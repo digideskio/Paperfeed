@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paperFeed</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+
+    @*<link href="@Url.Content("~/Styles/bundle.css")" rel="stylesheet" />*@
+    @*Use the link bellow when you're developing to enable hot reload*@
+    <link href="http://localhost:3000/static/bundle.css" rel="stylesheet" />
+
+</head>
+<body>
+    @*React app will be merged here!*@
+    <div id="root"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDfG9Qp8Ov9wOpO_A7SGIzR7XSMuREize4"></script>
+    @*<script type="text/javascript" src=@Url.Content("~/Scripts/bundle.js")></script>*@
+
+    @*Use the link bellow when you're developing to enable hot reload*@
+    <script type="text/javascript" src="http://localhost:3000/static/bundle.js"></script>
+
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-77446826-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Paperfeed.Models.Report>
+@{
+    ViewBag.Title = "Report";
+}
+<!-- TODO: Tooltip for enable/disable button-->
+<!-- TODO: Putte javascript i egen fil-->
+<!-- TODO: Oppdater teksten som står i paragrafen under.-->
+
+<h2>Report system</h2>
+
+<p>
+    The report system below allow admin to see all reports filed by users. Report includes reporting user, user being reported
+    and reason. By disabling the switch the offending user is denied access to the site.
+</p>
+
+
+
+
+<ul class="demo-list-three mdl-list">
+    @foreach (var item in Model)
+    {
+
+        <li class="mdl-list__item mdl-list__item--three-line">
+            <span class="mdl-list__item-primary-content">
+                <i class="material-icons  mdl-list__item-avatar">person</i>
+                <span>Reported by: @Html.DisplayFor(modelItem => item.ReporterEmail)</span>
+
+                <span class="mdl-list__item-text-body">
+                    Offender: @Html.DisplayFor(modelItem => item.VictimEmail)
+
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </span>
+            </span>
+
+            <!--For at alle switchene ikke skal få samme id(og dermed bli ubrukelige), brukes artikkelId som unik id-->
+            <span class="mdl-list__item-secondary-action">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-@item.Id">
+                    
+                    <input @*onclick="popUp(this.id)"*@ onclick="sendData(this.id)" type="checkbox" id="list-switch-@item.Id" class="mdl-switch__input" checked />
+                
+                </label>
+
+            </span>
+
+            <div class="mdl-tooltip" for="list-switch-@item.Id">Country of origin</div>
+
+            <div id="notification" class="mdl-js-snackbar mdl-snackbar">
+                <div class="mdl-snackbar__text"></div>
+                <button class="mdl-snackbar__action" type="button"></button>
+            </div>
+        </li>
+    }
+</ul>
+
+<!--Lage space på bunnen-->
+<div class="space" >
+</div>
+
+
+<script>
+    //Send ArticleId til kontrolleren
+    function sendData(ArticleId) {
+            $.ajax({
+                url: "/Users/EnableLockout",
+                type: 'POST',
+                data: { input: minId(ArticleId) },
+                success: function () {
+                    window.location.reload(true);
+                }
+
+            });
+    }
+
+    //Hjelpefunksjon for å hente ut kun Id for switchen
+    function minId(Id){
+        return  Id.replace("list-switch-", "") ;
+    }
+
+    ////For å kjøre flere funksjoner, putt alle funksjonene i én funksjon og få onClick i HTML til å kjøre denne felles funksjon
+    //function popUp(id) {
+    //    'use strict';
+    //    var snackbarContainer = document.querySelector('#notification');
+    //    var showSnackbarButton = document.querySelectorAll('.mdl-switch__input'); //To get all elements with this class
+
+    //    showSnackbarButton[0].addEventListener('click', function () {
+    //        var data = {
+    //            message: 'Rolle forandret seg.',
+    //            timeout: 2000
+    //        };
+    //        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
+    //        if ($("#list-switch-"+id).is(':checked'))
+    //            console.log("checked")
+    //        else
+    //            console.log(id)
+    //    });
+    //};
+</script>

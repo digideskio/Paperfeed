@@ -1,0 +1,56 @@
+﻿@model Paperfeed.Models.Urls
+
+@{
+    ViewBag.Title = "Scraper";
+}
+<!--DONE: Validation added-->
+<!--TODO: Fancyere Submit-knapp -->
+<!--TODO: Gjøre om til bootstrap(?) eller ikke -->
+
+
+<h3>Add URL to scraper</h3>
+<p>
+    Dear Admin, <br />
+    We've made it easier for you to add more webpages which the scraper should retrieve news from.
+    Provide the information below, hit submit and you'll soon see Paperfeed retrieve news from this newspaper.
+</p>
+<div id="urlskjema">
+
+
+    <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+        URL to Database
+    </div>
+    @using (Html.BeginForm("Scraper", "Admin", FormMethod.Post))
+    {
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.Category, new { @class = "mdl-textfield__input", placeholder = "Category", required = ""})
+            @Html.LabelFor(model => model.Category, new { @class = "mdl-textfield__label" })
+            <div class="mdl-tooltip" for="Category">eg. gaming</div>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.Source, new { @class = "mdl-textfield__input", placeholder = "Source", required = "" })
+            @Html.LabelFor(model => model.Source, new { @class = "mdl-textfield__label" })
+            <div class="mdl-tooltip" for="Source">Name of newspaper, eg. BBC</div>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.Link, new { @class = "mdl-textfield__input", placeholder = "Link", required = "" })
+            @Html.LabelFor(model => model.Link, new { @class = "mdl-textfield__label" })
+            <div class="mdl-tooltip" for="Link">Provide link to RSS feed</div>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            @Html.TextBoxFor(model => model.Country, new { @class = "mdl-textfield__input", placeholder = "Country", required = "" })
+            @Html.LabelFor(model => model.Country, new { @class = "mdl-textfield__label" })
+            <div class="mdl-tooltip" for="Country">Country of origin</div>
+            @*@Html.ValidationMessage("Country")*@
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <button id="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
+        </div>
+        //Data is passed to the action "Scraper" in controller "Admin" when submit button is pressed
+    }
+
+    <div class="mdl-layout-spacer"></div>
+
+</div>
+<p id="dbSuccess"> @ViewBag.Success</p>
+<p id="dbExists"> @ViewBag.NoAction</p>

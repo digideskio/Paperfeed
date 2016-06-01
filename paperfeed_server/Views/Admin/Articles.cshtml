@@ -1,0 +1,20 @@
+﻿@model Paperfeed.Models.Articles
+
+@{
+    ViewBag.Title = "Articles";
+}
+
+<h2>Articles</h2>
+
+
+    <!-- Doughnut Chart -->
+<div class="container">
+    <div class="chart-demo">
+        <canvas id="mydoughnutChart" width="640" height="400"></canvas>
+    </div>
+</div>
+
+
+<script type="text/javascript" src=@Url.Content("~/Scripts/scripts.js")></script>
+
+<p id="artikkelnummer">@ViewBag.articleNo</p>

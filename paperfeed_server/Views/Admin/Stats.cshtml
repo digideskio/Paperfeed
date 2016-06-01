@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Stats";
+}
+
+
+<h2>Database statistic</h2>
+
+
+<body>
+    
+
+    <!-- Doughnut Chart -->
+    <div class="container">
+        <div class="chart-demo">
+            <canvas id="mydoughnutChart" width="640" height="400"></canvas>
+        </div>
+    </div>
+    <p id="stats">This chart shows number of articles currently stored in the database(red) along with the total capacity of the database(green). </p>
+
+    
+    <script type="text/javascript" src=@Url.Content("~/Scripts/scripts.js")></script>
+</body>
